@@ -67,4 +67,18 @@ app.post("/login", async(request,response) => {
     }
 })
 
+// Retrieve client and user data 
+app.get("/data/", async(request,response) => {
+    const {mail} = request.query;
+    const getResults = `
+    SELECT user.id,client.client_name,client.client_code,user.username
+    FROM client inner join user on client.id = user.client_id
+    where user_email = ${mail}
+    `;
+    const runQuery = await db.get(getResults)
+    response.send(runQuery)
+})
+    
+
+
 initializeTheServer()

@@ -10,3 +10,6 @@ Content-Type: application/json
     "email": "radha.krishna@bcl.tirukamal.in",
     "password": "radha@123"
 }
+
+### 
+GET http://localhost:3001/data/?mail="radha.krishna@bcl.tirukamal.in"
