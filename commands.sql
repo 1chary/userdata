@@ -1,0 +1,1 @@
+SELECT * from user_assessment_map

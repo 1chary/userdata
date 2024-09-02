@@ -1,15 +1,22 @@
 ### 
 GET http://localhost:3001/clientData
 
-### 
+### log in api
 
 POST http://localhost:3001/login
 Content-Type: application/json
 
 {
-    "email": "radha.krishna@bcl.tirukamal.in",
-    "password": "radha@123"
+    "email": "green.arnold@bcl.tirukamal.in",
+    "password": "green@123"
 }
 
-### 
-GET http://localhost:3001/data/?mail="radha.krishna@bcl.tirukamal.in"
+### User details api after login 
+GET http://localhost:3001/data/?mail="green.arnold@bcl.tirukamal.in"
+
+
+### Retrieve the pending assessment data api. 
+GET http://localhost:3001/assessments/pending/?id="U1"
+
+### Retrieve the completed assessment data api. 
+GET http://localhost:3001/assessments/completed/?id="U2"

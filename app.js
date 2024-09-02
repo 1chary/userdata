@@ -79,6 +79,28 @@ app.get("/data/", async(request,response) => {
     response.send(runQuery)
 })
     
+// Retrieve the pending assessment data. 
+app.get("/assessments/pending", async(request,response) => {
+    const {id} = request.query
+    const getAssessmentsData = `
+        SELECT assigned_date,due_date,assessment_status,completion_date,assessment_name,assessment_type,assessment_link,is_active
+        FROM (user left join user_assessment_map on user.id = user_assessment_map.user_id) as T inner join assessment on T.assessment_id = assessment.id
+        where user.id = ${id} and (user_assessment_map.assessment_status= "In Progress" or user_assessment_map.assessment_status= "Not Started")
+    `;
+    const results = await db.get(getAssessmentsData)
+    response.send(results) 
+})
 
+// Retrieve the completed assessment data 
+app.get("/assessments/completed", async(request,response) => {
+    const {id} = request.query
+    const getAssessmentsData = `
+        SELECT assigned_date,due_date,assessment_status,completion_date,assessment_name,assessment_type,assessment_link,is_active
+        FROM (user left join user_assessment_map on user.id = user_assessment_map.user_id) as T inner join assessment on T.assessment_id = assessment.id
+        where user.id = ${id} and user_assessment_map.assessment_status="Completed"
+    `;
+    const results = await db.get(getAssessmentsData)
+    response.send(results) 
+})
 
 initializeTheServer()
