@@ -92,10 +92,10 @@ app.get("/assessments/pending", async(request,response) => {
     let storePendingAssessmentsData = []
     storePendingAssessmentsData.push(results)
     if (storePendingAssessmentsData.length !== 0) {
-        response.send(storePendingAssessmentsData) 
+        response.send(results) 
     }
     else {
-        response.send(null)
+        response.send([])
     }
 })
 
@@ -112,10 +112,10 @@ app.get("/assessments/completed", async(request,response) => {
     let storeCompletedAssessmentsData = []
     storeCompletedAssessmentsData.push(results)
     if (storeCompletedAssessmentsData.length !== 0) {
-        response.send(storeCompletedAssessmentsData) 
+        response.send(results) 
     }
     else {
-        response.send(null)
+        response.send([])
     }
 })
 
