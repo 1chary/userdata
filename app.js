@@ -88,7 +88,7 @@ app.get("/assessments/pending", async(request,response) => {
         FROM (user left join user_assessment_map on user.id = user_assessment_map.user_id) as T inner join assessment on T.assessment_id = assessment.id
         where user.id = ${id} and (user_assessment_map.assessment_status= "In Progress" or user_assessment_map.assessment_status= "Not Started")
     `;
-    const results = await db.get(getAssessmentsData)
+    const results = await db.all(getAssessmentsData)
     let storePendingAssessmentsData = []
     storePendingAssessmentsData.push(results)
     if (storePendingAssessmentsData.length !== 0) {
@@ -108,7 +108,7 @@ app.get("/assessments/completed", async(request,response) => {
         FROM (user left join user_assessment_map on user.id = user_assessment_map.user_id) as T inner join assessment on T.assessment_id = assessment.id
         where user.id = ${id} and user_assessment_map.assessment_status="Completed"
     `;
-    const results = await db.get(getAssessmentsData)
+    const results = await db.all(getAssessmentsData)
     let storeCompletedAssessmentsData = []
     storeCompletedAssessmentsData.push(results)
     if (storeCompletedAssessmentsData.length !== 0) {
