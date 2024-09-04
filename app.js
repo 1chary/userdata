@@ -89,7 +89,14 @@ app.get("/assessments/pending", async(request,response) => {
         where user.id = ${id} and (user_assessment_map.assessment_status= "In Progress" or user_assessment_map.assessment_status= "Not Started")
     `;
     const results = await db.get(getAssessmentsData)
-    response.send(results) 
+    let storePendingAssessmentsData = []
+    storePendingAssessmentsData.push(results)
+    if (storePendingAssessmentsData.length !== 0) {
+        response.send(storePendingAssessmentsData) 
+    }
+    else {
+        response.send(null)
+    }
 })
 
 // Retrieve the completed assessment data 
@@ -102,7 +109,14 @@ app.get("/assessments/completed", async(request,response) => {
         where user.id = ${id} and user_assessment_map.assessment_status="Completed"
     `;
     const results = await db.get(getAssessmentsData)
-    response.send(results) 
+    let storeCompletedAssessmentsData = []
+    storeCompletedAssessmentsData.push(results)
+    if (storeCompletedAssessmentsData.length !== 0) {
+        response.send(storeCompletedAssessmentsData) 
+    }
+    else {
+        response.send(null)
+    }
 })
 
 initializeTheServer()

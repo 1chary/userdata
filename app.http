@@ -19,4 +19,5 @@ GET http://localhost:3001/data/?mail="green.arnold@bcl.tirukamal.in"
 GET http://localhost:3001/assessments/pending/?id="U1"
 
 ### Retrieve the completed assessment data api. 
-GET http://localhost:3001/assessments/completed/?id="U2"
+GET http://localhost:3001/assessments/completed/?id="U1"
+
