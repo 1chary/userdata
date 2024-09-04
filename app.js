@@ -58,7 +58,7 @@ app.post("/login", async(request,response) => {
                 name: userEmailVerification.username
             }
             const jwtToken = jwt.sign(payload,"my_token")
-            response.send(jwtToken)
+            response.send({jwtToken})
         }
         else {
             response.status(400);
@@ -80,6 +80,7 @@ app.get("/data/", async(request,response) => {
 })
     
 // Retrieve the pending assessment data. 
+
 app.get("/assessments/pending", async(request,response) => {
     const {id} = request.query
     const getAssessmentsData = `
@@ -92,6 +93,7 @@ app.get("/assessments/pending", async(request,response) => {
 })
 
 // Retrieve the completed assessment data 
+
 app.get("/assessments/completed", async(request,response) => {
     const {id} = request.query
     const getAssessmentsData = `
